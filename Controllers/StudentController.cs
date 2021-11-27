@@ -16,10 +16,10 @@ namespace StudentManagement.Controllers
     public class StudentController : Controller
     {
         private readonly ILogger<StudentController> _logger;
-        StudentServices studentServices;
+        StudentServicesStoredProcedure studentServices;
         public StudentController(ILogger<StudentController> logger, StudentContext db)
         {
-            studentServices = new StudentServices(db);
+            studentServices = new StudentServicesStoredProcedure();
             _logger = logger;
         }
         //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
@@ -77,7 +77,7 @@ namespace StudentManagement.Controllers
 
         [HttpPost]
         public IActionResult Delete(Student student) {
-            studentServices.DeleteStudent(student);
+            studentServices.DeleteStudent(student.StudentId);
             return RedirectToActionPermanent("Index");
         }
 
