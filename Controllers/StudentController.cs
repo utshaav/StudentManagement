@@ -64,9 +64,14 @@ namespace StudentManagement.Controllers
 
         [HttpPost]
         public IActionResult Update(Student student){
-            studentServices.UpdateStudent(student);
-            // Console.WriteLine(result);
-            return RedirectPermanent("Index");
+            if (ModelState.IsValid)
+            {
+                studentServices.UpdateStudent(student);
+                // Console.WriteLine(result);
+                return RedirectPermanent("Index");
+            }
+            ViewBag.GenderDD = getGenderDD();
+            return View(student);
         }
 
         public IActionResult Delete(int id)
