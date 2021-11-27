@@ -1,0 +1,12 @@
+@model Student
+@{
+  ViewData["Title"] = Model.StudentName;
+}
+
+<div class="jumbotron">
+  <h1 class="display-4">@Model.StudentName</h1>
+  <p class="lead">I am @Model.StudentName, I live in @Model.Address</p>
+  <hr class="my-4">
+  <p>View Other students: </p>
+  <a class="btn btn-primary btn-lg" asp-controller="Student" asp-action="Index" role="button">Go to List</a>
+</div>
