@@ -30,8 +30,8 @@ namespace StudentManagement.Data
 
 
                 connection.Open();
-                result = sql.ExecuteScalar().ToString();
-                return result;
+                sql.ExecuteScalar();
+                return "Success";
             }
             catch
             {
@@ -61,7 +61,7 @@ namespace StudentManagement.Data
                 sql.Parameters.AddWithValue("@gender", student.Gender);
                 connection.Open();
                 sql.ExecuteScalar();
-                return "Done";
+                return "Success";
             }
             catch
             {
