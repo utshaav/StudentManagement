@@ -24,8 +24,8 @@ namespace StudentManagement.Services
             dataAccess.UpdateStudent(student);
         }
 
-        public int CountTotal(){
-            return 0;
+        public int CountStudents(){
+            return dataAccess.CountStudents();
         }
 
         public void AddStudent(Student student){

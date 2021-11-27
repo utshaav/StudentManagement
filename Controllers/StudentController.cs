@@ -25,7 +25,7 @@ namespace StudentManagement.Controllers
         //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public IActionResult Index()
         {
-            ViewBag.Count = studentServices.CountTotal();
+            ViewBag.Count = studentServices.CountStudents();
             List<Student> students = studentServices.GetAllStudents();
             return View(students);
         }

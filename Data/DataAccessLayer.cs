@@ -97,6 +97,8 @@ namespace StudentManagement.Data
             }
         }
 
+
+
         public Student GetStudent(int id)
         {
             SqlConnection connection = null;
@@ -127,6 +129,34 @@ namespace StudentManagement.Data
             catch
             {
                 return student;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public int CountStudents()
+        {
+            SqlConnection connection = null;
+            DataSet ds = null;
+            Student student = null;
+            try
+            {
+                connection = new SqlConnection(connectionString);
+                SqlCommand sql = new SqlCommand("CountTotal", connection);
+                sql.CommandType = CommandType.StoredProcedure;
+                connection.Open();
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sql;
+                ds = new DataSet();
+                da.Fill(ds);
+                
+                return Convert.ToInt32(ds.Tables[0].Rows[0]["Total"].ToString());
+            }
+            catch
+            {
+                return 0;
             }
             finally
             {
